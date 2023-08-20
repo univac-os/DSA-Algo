@@ -6,7 +6,7 @@ class Solution:
         for c in s:
             if c in currSet:
                 res+=1
-                currSet=set()#empty it
+                currSet.clear()#empty it
             currSet.add(c)
         
         return res
