@@ -10,4 +10,3 @@ class Solution:
                 res=total+n #2nd condition
             total+=n
         return res
-        
