@@ -2,8 +2,8 @@ class Solution:
     def numTilings(self, n: int) -> int:
         #look dp sub problem is there based on n
         MOD=10**9+7
-        domino=[False]*(n+1)
-        tromino=[False]*(n+1)
+        domino=[0]*(n+1)
+        tromino=[0]*(n+1)
         def domo(n):
             if n==0:
                 return 1
