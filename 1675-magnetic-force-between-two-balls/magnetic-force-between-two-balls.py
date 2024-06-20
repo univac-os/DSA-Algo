@@ -3,8 +3,8 @@ class Solution:
         #we need max from all mini 
         #check distance and move binaray search
         def canFind(req_dist):
-            balls=0
-            prev_idx=float('-inf')
+            balls=1
+            prev_idx=position[0]
             for b in position:
                 if b- prev_idx>=req_dist:
                     balls+=1
