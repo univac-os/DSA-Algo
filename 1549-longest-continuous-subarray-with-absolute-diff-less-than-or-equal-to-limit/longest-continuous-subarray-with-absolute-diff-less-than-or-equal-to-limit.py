@@ -6,6 +6,29 @@ class Solution:
         #based on diff according to limit we take to heap O(nlogn)
         #but here we are considering max and min val are present in solution which is not correct
         # we want contious sub array so slinding window so we need check min and max value of the heap ,So we can get len og sub array
+
+        #BETTER WE CAN TAKE queue in inceasing and decreasing order and check limit and remove them
+        max_q,min_q=deque(),deque()
+        l,res=0,0
+        for r in range(len(nums)):
+            #make max queue in decreasing order
+            while max_q and max_q[-1]<nums[r]:
+                max_q.pop()#remove that element
+            max_q.append(nums[r])
+            #similar min queu in increasing order
+            while min_q and min_q[-1]>nums[r]:
+                min_q.pop()#remove that element
+            min_q.append(nums[r])
+            #now we made queue in increase & decreas order but what about continous 
+            while max_q[0]-min_q[0]>limit:
+                #remove the element to reduce the gap
+                if max_q[0]==nums[l]:
+                    max_q.popleft()
+                if min_q[0]==nums[l]:
+                    min_q.popleft()
+                l+=1
+            res=max(res,r-l+1)
+        return res
         max_h,min_h=[],[]
         l=0
         res=0
@@ -17,7 +40,7 @@ class Solution:
                 #remove from which heap 
                 l=min(max_h[0][1],min_h[0][1])+ 1 #removed that element from window
                 
-                #check that element in heap range
+                #check that element in heap range as we want continous sub array
                 while max_h[0][1]<l:
                     heapq.heappop(max_h)
                 while min_h[0][1]<l:
@@ -25,30 +48,5 @@ class Solution:
                 
             res=max(res,r-l+1)
         return res
+
         
-        #BETTER WE CAN TAKE queue in inceasing and decreasing order and check limit and remove them
-        max_q=deque()
-        min_q=deque()
-        l,res=0,0
-        for r in range(len(nums)):
-            #1. check max queue and add to it
-            while max_q and max_q[-1]<nums[r]:#decreasing order
-                #we got new max value
-                max_q.pop() #remove last
-            max_q.append(nums[r])
-            #2.check min queue
-            while min_q and min_q[-1]>nums[r]:#increasing order
-                min_q.pop()
-            min_q.append(nums[r])
-
-            #check limit
-            while max_q[0]-min_q[0]>limit:
-                #sink the window
-                if max_q[0]==nums[l]:
-                    max_q.popleft()
-                if min_q[0]==nums[l]:
-                    min_q.popleft()
-                l+=1
-            res=max(res,r-l+1)
-        return res
-
