@@ -15,11 +15,11 @@ class Solution:
             for nei in adjL[node]:
                 cache[node]+=[nei]+dfs(nei)
 
-            cache[node]=list(set(cache[node]))
+            cache[node]=sorted(list(set(cache[node])))
             return cache[node]
 
 
         for i in range(n):
             dfs(i)
 
-        return [sorted(cache[_]) for _ in range(n)]
+        return [cache[_] for _ in range(n)]
