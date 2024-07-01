@@ -10,4 +10,4 @@ class Solution:
                 close+=1
             maxClose=max(maxClose,close)
         #we got at some point we have max ] that need pair so we can use [ from end 
-        return (maxClose+1)//2
+        return (maxClose)//2+ maxClose%2
