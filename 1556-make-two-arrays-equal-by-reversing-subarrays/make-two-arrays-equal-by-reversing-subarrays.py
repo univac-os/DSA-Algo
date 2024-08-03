@@ -10,6 +10,6 @@ class Solution:
             if count[n]!=0:
                 return False
         return True
-        
+
         #similar to isAnagram
         return Counter(target)==Counter(arr)
