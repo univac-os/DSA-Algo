@@ -19,7 +19,8 @@ class Solution:
                 if (grid[r][i] + grid[r+1][i] + grid[r+2][i])!=15:
                     return 0
             #check sum of diagional
-            if (grid[r][c] + grid[r+1][c+1] + grid[r+2][c+2]!=15) or (grid[r+2][c] + grid[r+1][c+1] + grid[r][c+2]!=15):
+            if ((grid[r][c] + grid[r+1][c+1] + grid[r+2][c+2]!=15) or 
+            (grid[r+2][c] + grid[r+1][c+1] + grid[r][c+2]!=15)):
                 return 0
             return 1
 
