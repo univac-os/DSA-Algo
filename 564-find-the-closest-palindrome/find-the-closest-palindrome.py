@@ -10,7 +10,7 @@ class Solution:
         we need make all 9 and 1 0*(n-2) 1
         '''
         N = len(p)
-        if p=="1":return "0"
+        
         first_half = p[:(N + 1) // 2]
         candidates = set()
         
