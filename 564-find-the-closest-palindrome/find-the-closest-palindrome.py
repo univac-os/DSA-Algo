@@ -10,7 +10,6 @@ class Solution:
         we need make all 9 and 1 0*(n-2) 1
         '''
         N = len(p)
-        
         first_half = p[:(N + 1) // 2]
         candidates = set()
         
@@ -20,7 +19,7 @@ class Solution:
             if N % 2 == 0:
                 candidates.add(first_half_with_d + first_half_with_d[::-1])
             else:
-                candidates.add(first_half_with_d + first_half_with_d[-2::-1])
+                candidates.add(first_half_with_d + first_half_with_d[-2::-1]) #not take middle value
         
         # Handle special cases
         if N-1>0:
@@ -29,7 +28,6 @@ class Solution:
         
         candidates.discard(p)  # Remove the number itself if present in candidates
 
-        # Find the closest palindrome
         closest_palindrome = None
         min_diff = float('inf')
         
