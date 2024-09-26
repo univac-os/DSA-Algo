@@ -1,3 +1,4 @@
+#Optimal solution is to sort,but each time after append and sort similar to heap
 class MyCalendar:
     #brute force check with each one whether it overlapping or not O(n2)
     def __init__(self):
@@ -8,7 +9,7 @@ class MyCalendar:
             #check overlapping given event should be before start or after end
             if not (e<=start or s>=end): 
                 return False
-        self.events.append((start,end))
+        heapq.heappush(self.events,(start,end))
         return True
         
 
