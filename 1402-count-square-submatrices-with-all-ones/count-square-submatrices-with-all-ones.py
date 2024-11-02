@@ -4,18 +4,19 @@ class Solution:
         DP from a point check 3 directions down,left,diagonal this is how many we can form from that point O(n2)
         '''
         #BOTTTOM UP 
-        row,col=len(matrix),len(matrix[0])
-        dp=[[0]*col for _ in range(row)]
-        res=0
+        row, col = len(matrix), len(matrix[0])
+        prev = [0] * (col + 1)
+        res = 0
+        
         for r in reversed(range(row)):
+            curr = [0] * (col + 1)
             for c in reversed(range(col)):
                 if matrix[r][c] == 1:
-                    if r == row - 1 or c == col - 1:
-                        dp[r][c] = 1  # Edge cells, no square beyond them
-                    else:
-                        dp[r][c] = 1 + min(dp[r+1][c], dp[r][c+1], dp[r+1][c+1])
-                    res += dp[r][c]
-        return res       
+                    curr[c] = 1 + min(prev[c], prev[c + 1], curr[c + 1])
+                    res += curr[c]
+            prev = curr  
+        
+        return res
 
 
         row,col=len(matrix),len(matrix[0])
