@@ -18,8 +18,9 @@ class Solution:
         for r in range(len(s)):
             #get the char and check in count array 
             count[ord(s[r])-ord('a')]-= 1
-            while l<=r and min(count)<k:
+            while min(count)<k:
                 count[ord(s[l])-ord('a')]+=1
+                print(min(count))
                 l+=1
             res=max(res,r-l+1)
         return len(s)-res
