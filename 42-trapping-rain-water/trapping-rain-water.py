@@ -4,25 +4,33 @@ class Solution:
         if n == 0:
             return 0
 
-        # Arrays to store the cumulative max heights on the left and right
-        left_max = [0] * n
-        right_max = [0] * n
-
-        # Compute left_max array
-        left_max[0] = height[0]
-        for i in range(1, n):
-            left_max[i] = max(left_max[i - 1], height[i])
-
-        # Compute right_max array
-        right_max[n - 1] = height[n - 1]
-        for i in range(n - 2, -1, -1):
-            right_max[i] = max(right_max[i + 1], height[i])
-
-        # Calculate the trapped water
+        stack = []
         trapped_water = 0
+
         for i in range(n):
-            trapped_water += max(0, min(left_max[i], right_max[i]) - height[i])
+            # Process the "valley" when current height is greater than the top of the stack
+            while stack and height[i] > height[stack[-1]]:
+                top = stack.pop()
+
+                if not stack:
+                    break  # No left boundary, can't trap water
+
+                # Calculate the distance between the current index and the stack top (left boundary)
+                distance = i - stack[-1] - 1
+
+                # Calculate the bounded height for water trapping
+                bounded_height = min(height[i], height[stack[-1]]) - height[top]
+
+                # Add the trapped water for this valley
+                trapped_water += distance * bounded_height
+
+            # Push the current index onto the stack
+            stack.append(i)
 
         return trapped_water
 
 
+# Test case
+height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+solution = Solution()
+print(solution.trap(height))  # Output: 6
