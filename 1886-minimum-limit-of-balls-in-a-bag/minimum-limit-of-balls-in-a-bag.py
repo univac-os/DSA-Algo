@@ -16,11 +16,11 @@ class Solution:
             return True
 
         l,r=1,max(nums)
-        while l<r:
+        while l<=r:
             m=(l+r)//2
             if is_valid(m):
                 #greddy find less max
-                r=m
+                r=m-1
             else:
                 l=m+1
         return l
