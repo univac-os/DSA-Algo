@@ -21,18 +21,18 @@ class Solution:
         left, right = 1, total
         choices = ["a", "b", "c"]
 
-        for _ in range(n):
-            curr = left
-            partition_size = (right - left + 1) // len(choices)
+        for i in range(n):
+            curr=left
+            partition_size=(right-left+1)//len(choices)
+            #we will move curr in each interval
             for ch in choices:
-                if curr <= k < curr + partition_size:
+                if curr<=k<curr+partition_size:
                     res.append(ch)
-                    left = curr
-                    right = curr + partition_size - 1
-                    # Remove current choice to ensure no adjacent duplicates
-                    choices = [c for c in "abc" if c != ch]
+                    left=curr
+                    right=curr+partition_size #shrink the window
+                    choices=[c for c in "abc" if c!=ch]# update choices as adjacent are not same
                     break
-                curr += partition_size
+                curr+=partition_size
 
         return "".join(res)
 
