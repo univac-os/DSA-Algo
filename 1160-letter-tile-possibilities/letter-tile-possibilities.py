@@ -5,17 +5,19 @@ class Solution:
         backtrack with count of each char better
         on each call we want to update res
         """
+        res=0
         count=Counter(tiles)
         def backtrack():
-            res=0
+            nonlocal res
             for c in count:
                 if count[c]>0:
                     count[c]-=1
                     res+=1
-                    res+=backtrack()
+                    backtrack()
                     count[c]+=1
             return res
-        return backtrack()
+        backtrack()
+        return res
            
                     
 
