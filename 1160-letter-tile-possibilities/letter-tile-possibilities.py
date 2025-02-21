@@ -1,24 +1,19 @@
+from collections import Counter
+
 class Solution:
     def numTilePossibilities(self, tiles: str) -> int:
         """
-        permutation or combination works ? NO
-        backtrack with count of each char better
-        on each call we want to update res
+        Uses backtracking with character counts to count unique sequences.
+        Passing `res` as a parameter and returning the accumulated count.
         """
-        res=0
-        count=Counter(tiles)
-        def backtrack():
-            nonlocal res
-            for c in count:
-                if count[c]>0:
-                    count[c]-=1
-                    res+=1
-                    backtrack()
-                    count[c]+=1
-            return res
-        backtrack()
-        return res
-           
-                    
+        count = Counter(tiles)
 
-    
+        def backtrack(res: int) -> int:
+            for c in count:
+                if count[c] > 0:
+                    count[c] -= 1  # Choose the character
+                    res = backtrack(res + 1)  # Recurse with updated count
+                    count[c] += 1  # Undo the choice (backtrack)
+            return res  # Return the accumulated count
+
+        return backtrack(0)  # Start with res = 0
