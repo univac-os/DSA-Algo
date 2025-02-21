@@ -6,7 +6,6 @@ class Solution:
         """
         res=[0]*(2*n-1)
         used=set()#numbers
-        ans=[]
         def backtrack(i):
             if i==len(res):
                 return True
