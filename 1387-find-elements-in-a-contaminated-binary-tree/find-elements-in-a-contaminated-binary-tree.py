@@ -5,7 +5,25 @@
 #         self.left = left
 #         self.right = right
 class FindElements:
-
+    def __init__(self,root):
+        self.nodes=set()
+        self.bfs(root)
+    def find(self,target):
+        return target in self.nodes
+    def bfs(root,val):
+        q=deque([root])
+        root.val=0
+        while q:
+            node=q.popleft()
+            self.nodes.add(root.val)
+            if node.left:
+                node.left.val=node.val*2+1
+                q.append(node.left)
+            if node.right:
+                node.right.val=node.val*2+2
+                q.append(node.right)
+        
+    #DFS
     def __init__(self, root: Optional[TreeNode]):
         #construct of tree
         self.nodes=set()#add complete node values in set
