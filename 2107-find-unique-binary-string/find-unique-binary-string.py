@@ -9,10 +9,12 @@ class Solution:
                     return ds
                 return ""
             #2 option 0 or 1
-            zero=backtrack(ds+"0")
+            ds=ds+"0"
+            zero=backtrack(ds)
             if zero!="":return zero
-            
-            one=backtrack(ds+"1")
+            ds=ds[:len(ds)-1]
+            ds=ds+"1"
+            one=backtrack(ds)
             if one!="":return one
             return ""
         
