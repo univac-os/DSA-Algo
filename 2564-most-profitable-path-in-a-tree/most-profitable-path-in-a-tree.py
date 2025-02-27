@@ -23,7 +23,7 @@ class Solution:
                 if nei ==prev:
                     continue
                 if dfs(nei,node,time+1):
-                    bob_times[node]=time
+                    bob_times[node]=time # if are able to go to root then update the path
                     return True
             return False
         dfs(bob,-1,0)
@@ -45,7 +45,7 @@ class Solution:
                         nei_profit=0
                     elif nei_time==bob_times[nei]:
                         #both at a time so half to each
-                        nei_profit=nei_profit//2
+                        nei_profit//=2
                 q.append((nei,nei_time,node,nei_profit+profit))
                 if len(adj[nei])==1:
                     res=max(res,nei_profit+profit)
