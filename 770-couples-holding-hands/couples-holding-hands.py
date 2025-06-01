@@ -11,7 +11,8 @@ class Solution:
         res=0
         for i in range(0,n,2):
             first=row[i]
-            partner=first+1 if first%2==0 else first-1
+            # partner=first+1 if first%2==0 else first-1
+            partner =first^1 #xor 2^1=3 and 3^1 gives 2
             if partner !=row[i+1]:
                 #we need to swap
                 partner_idx=pos[partner]
