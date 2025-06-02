@@ -12,16 +12,11 @@ class Solution:
         again recussion like divide and conquer (qucik sort)
         we need to get max val everytime so recursion
         """
-        def get_max(l,r):
-            idx=l
-            for i in range(l,r):
-                if nums[idx]<nums[i]:
-                    idx=i
-            return idx
+ 
         def rec(l,r):
             if l==r:
                 return None
-            idx=get_max(l,r)
+            idx=nums.index(max(nums[l:r]))
             #0..idx-left side and idx+1..n right side
             node=TreeNode(nums[idx])
             node.left=rec(l,idx)
