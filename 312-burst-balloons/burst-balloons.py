@@ -7,13 +7,24 @@ class Solution:
         removing extreme end at start is waste greedy say 9 3 1 5 2 7
         removing 1st 1 then 2 ,3 so ordering no give right always so
         take all posible l.. i...r  so 3 parts left side ,right side and middle
-        so here we fix left and right and i changes in between them calculate
+        so here we fix left and right and i changes in between them calculate O(n3)
         """
         nums=[1]+nums+[1]
         n=len(nums)
+        #bottom up
+        dp=[[0]*n for _ in range(n)]
+        
+        for l in range(n-2,-1,-1):
+            for r in range(l+2,n):
+                for i in range(l+1,r):
+                    coins=nums[l]*nums[i]*nums[r]+dp[l][i]+dp[i][r]
+                    dp[l][r]=max(dp[l][r],coins)
+        return dp[0][n-1]
+
+
         cache={}
         def dfs(l,r):
-            if l+1>=r:
+            if l>=r:#here l and r are boundary not taking them
                 return 0
             if (l,r) in cache:
                 return cache[(l,r)]
