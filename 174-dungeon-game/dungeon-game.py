@@ -6,6 +6,14 @@ class Solution:
         if that val is -ve +1 or else 
         """
         n,m=len(dungeon),len(dungeon[0])
+        dp=[[float('inf')]*(m+1) for _ in range(n+1)]
+        dp[n][m-1]=dp[n-1][m]=1 #top and side 1 start point
+        for i in reversed(range(n)):
+            for j in reversed(range(m)):
+                min_till_now=min(dp[i][j+1],dp[i+1][j])
+                max_need=max(1,min_till_now-dungeon[i][j])
+                dp[i][j]=max_need
+        return dp[0][0]
         cache={}
         def dfs(i,j):
             if i>=n or j>=m:return float('inf')
