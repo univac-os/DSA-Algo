@@ -7,7 +7,7 @@ class Solution:
         """
         n,m=len(dungeon),len(dungeon[0])
         dp=[[float('inf')]*(m+1) for _ in range(n+1)]
-        dp[n][m-1]=dp[n-1][m]=1 #top and side 1 start point
+        dp[n][m-1]=dp[n-1][m]=1 #top and side 1 start
         for i in reversed(range(n)):
             for j in reversed(range(m)):
                 min_till_now=min(dp[i][j+1],dp[i+1][j])
