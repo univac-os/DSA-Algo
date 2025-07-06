@@ -6,6 +6,19 @@ class Solution:
         #if incoming is minimim value then prev value is mini val for those subarray
         #looks dp
         MOD=10**9+7
+        n,res=len(arr),0
+        stack=[] #(idx)
+        #find num in subarray where it is minimum
+        for right in range(n+1):
+            while stack and (right==n or arr[stack[-1]]>=arr[right]):
+                #pop it and calculate the min the num present in subarry
+                mid=stack.pop()
+                left=stack[-1] if stack else -1 #start point
+                res=(res+arr[mid]*(mid-left)*(right-mid))%MOD
+            stack.append(right)
+        return res
+
+
         res=0
         stack=[]#(index,num)
         for idx,n in enumerate(arr):
