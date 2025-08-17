@@ -18,6 +18,11 @@ class Solution:
         
         min_h=[]
         count=Counter(words)
+
+        heap=[(-cnt,w) for w,cnt in count.items()]
+        heapq.heapify(heap)
+        return [ heapq.heappop(heap)[1] for _ in range(k)]
+
         for w,cnt in count.items():
             heapq.heappush(min_h,Compartor(cnt,w))
             if len(min_h)>k:
