@@ -1,7 +1,7 @@
 class Solution:
     def judgePoint24(self, cards: List[int]) -> bool:
         """
-        24 = 2*12 | 3*8 | 4*6 but we can have addition all division some real division so we need see combination ,so Backtracking so each number 6 options (a+b ,a*b , a-b ,b-a ,a/b,b/a) and check it so from each option check it so time complexity will be huge 
+        24 = 2*12 | 3*8 | 4*6 but we can have addition all division some real division so we need see combination ,so Backtracking so each number 6 options (a+b ,a*b , a-b ,b-a ,a/b,b/a) and check it so from each option check it so time complexity will be 4! so O(1) as 4 is contsant
         """
         approx=1e-6 #10^6
         def dfs(nums):
@@ -19,7 +19,7 @@ class Solution:
                         options.add(b/a)
                     
                     for val in options:
-                        if dfs(remain + [val]):
+                        if dfs(remain + [val]): #check with each option
                             return True
             return False
         
