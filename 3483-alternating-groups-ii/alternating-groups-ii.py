@@ -16,9 +16,13 @@ class Solution:
                 l=r
                 r+=1
                 continue
+            while r-l+1>=k:
+                res+=1
+                l+=1
             r+=1
-            if r-l<k:
-                continue
-            res+=1
-            l+=1 #shrink window
+            # r+=1
+            # if r-l<k:
+            #     continue
+            # res+=1
+            # l+=1 #shrink window
         return res
